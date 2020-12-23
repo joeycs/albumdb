@@ -16,16 +16,33 @@ export default class AlbumList extends Component {
     constructor(props) {
         super(props);
 
+        this.onChangeUsername = this.onChangeUsername.bind(this);
         this.deleteAlbum = this.deleteAlbum.bind(this);
-        this.state = {albums: []};
+
+        this.state = {
+            users: [],
+            username: "undefined",
+            albums: []
+        };
     }
 
     componentDidMount() {
-        axios.get("http://localhost:5000/albums/")
+        axios.get("http://localhost:5000/users/")
             .then(res => {
-                this.setState({ albums: res.data });
+                if (res.data.length > 0) {
+                    this.setState({
+                        users: res.data.map(user => user.username),
+                        username: res.data[0].username
+                    });
+                }
             })
             .catch(err => console.log(err));
+    }
+
+    onChangeUsername(e) {
+        this.setState({
+            username: e.target.value
+        });
     }
 
     deleteAlbum(id) {
@@ -39,6 +56,14 @@ export default class AlbumList extends Component {
     }
 
     albumList() {
+        axios.get("http://localhost:5000/albums/")
+            .then(res => {
+                this.setState({ 
+                    albums: res.data.filter(album => album.username === this.state.username) 
+                });
+            })
+            .catch(err => console.log(err));
+
         return this.state.albums.map(currAlbum => {
             return <Album album={currAlbum} 
                           deleteAlbum={this.deleteAlbum}
@@ -50,7 +75,27 @@ export default class AlbumList extends Component {
     render() {
         return (
             <div>
-                <h3>Albums</h3>
+                <form>
+                    <div className="form-group">
+                        <label>Username</label>
+                        <select required
+                            className="form-control" 
+                            value={this.state.username}
+                            onChange={this.onChangeUsername}>
+                                {
+                                    this.state.users.map(user => {
+                                            return <option
+                                                        key={user}
+                                                        value={user}
+                                                >
+                                                        {user}
+                                                </option>;
+                                    })
+                                }
+                        </select>
+                    </div>
+                </form>
+                <h3>{ this.state.username }'s Albums</h3>
                 <table className="table">
                     <thead className="thead-dark">
                         <tr>
