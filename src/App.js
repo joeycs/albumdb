@@ -13,7 +13,15 @@ function App() {
     <Router>
       <Navbar />
       <br/>
-      <Route path="/" exact component={AlbumsList} />
+      <Route 
+        exact
+        path="/" 
+        render={props => (
+          <AlbumsList {...props} globalThing={props => (
+            <p>{props.message}</p>
+          )} />
+        )} 
+      />
       <Route path="/edit/:id" exact component={EditAlbum} />
       <Route path="/add" exact component={AddAlbum} />
       <Route path="/register" exact component={Register} />

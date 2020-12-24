@@ -75,6 +75,7 @@ export default class AlbumList extends Component {
     render() {
         return (
             <div>
+                {<this.props.globalThing message="hello world!!"/>}
                 <form>
                     <div className="form-group">
                         <label>Username</label>
