@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/navbar.component";
-import AlbumsList from "./components/album-list.component";
+import AlbumList from "./components/album-list.component";
 import EditAlbum from "./components/edit-album.component";
 import AddAlbum from "./components/add-album.component";
 import Register from "./components/register.component";
@@ -17,7 +17,7 @@ function App() {
         exact
         path="/" 
         render={props => (
-          <AlbumsList {...props} globalThing={props => (
+          <AlbumList {...props} globalThing={props => (
             <p>{props.message}</p>
           )} />
         )} 

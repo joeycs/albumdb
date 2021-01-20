@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const config = require("../config.js");
+
 let Album = require("../models/album.model");
 
 router.route("/").get((req, res) => {
