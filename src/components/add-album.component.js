@@ -11,26 +11,10 @@ export default class AddAlbum extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      username: "",
       title: "",
       artist: "",
       genre: "",
-      users: [],
     };
-  }
-
-  componentDidMount() {
-    // axios
-    //   .get("http://localhost:5000/users/")
-    //   .then((res) => {
-    //     if (res.data.length > 0) {
-    //       this.setState({
-    //         users: res.data.map((user) => user.username),
-    //         username: res.data[0].username,
-    //       });
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
   }
 
   onChangeTitle(e) {
@@ -55,7 +39,7 @@ export default class AddAlbum extends Component {
     e.preventDefault();
 
     const album = {
-      username: this.state.username,
+      email: this.props.user.email,
       title: this.state.title,
       artist: this.state.artist,
       genre: this.state.genre,
@@ -64,14 +48,18 @@ export default class AddAlbum extends Component {
     console.log(album);
 
     axios
-      .post("http://localhost:5000/albums/add", album)
+      .post(this.props.uri + `/albums/add`, album)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 
     window.location = "/";
   }
 
-  render() {
+  guestBody() {
+    return <h3>Please log in to add an album!</h3>;
+  }
+
+  userBody() {
     return (
       <form onSubmit={this.onSubmit}>
         <h3>Add Album</h3>
@@ -107,5 +95,10 @@ export default class AddAlbum extends Component {
         </button>
       </form>
     );
+  }
+
+  render() {
+    if (this.props.user) return this.userBody();
+    else return this.guestBody();
   }
 }

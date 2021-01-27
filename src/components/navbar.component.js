@@ -15,6 +15,9 @@ export default class NavBar extends Component {
             <a className="nav-item nav-link" href="/add">
               Add Album
             </a>
+            <a className="nav-item nav-link" href="/login">
+              Log In
+            </a>
             <a className="nav-item nav-link" href="/register">
               Register
             </a>

@@ -22,40 +22,13 @@ const Album = (props) => (
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
-
     this.deleteAlbum = this.deleteAlbum.bind(this);
-
-    this.state = {
-      user: undefined,
-      albums: [],
-    };
-  }
-
-  componentDidMount() {
-    fetch("http://localhost:5000/user/", {
-      credentials: "include", // fetch won't send cookies unless you set credentials
-    })
-      .then((res) => res.json())
-      .then((res) =>
-        this.setState({
-          user: res.user,
-        })
-      );
-
-    // axios
-    //   .get("http://localhost:5000/user/")
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     this.setState({
-    //       user: res.user,
-    //     });
-    //   })
-    //   .catch((err) => console.log(err));
+    this.state = { albums: [] };
   }
 
   deleteAlbum(id) {
     axios
-      .delete(`http://localhost:5000/albums/${id}`)
+      .delete(this.props.uri + `/albums/${id}`)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 
@@ -66,11 +39,11 @@ export default class AlbumList extends Component {
 
   albumList() {
     axios
-      .get("http://localhost:5000/albums/")
+      .get(this.props.uri + "/albums/")
       .then((res) => {
         this.setState({
           albums: res.data.filter(
-            (album) => album.username === this.state.username
+            (album) => album.email === this.props.user.email
           ),
         });
       })
@@ -88,8 +61,8 @@ export default class AlbumList extends Component {
   }
 
   render() {
-    let message = this.state.user
-      ? `${this.state.user.username}'s albums!`
+    let message = this.props.user
+      ? `Hello, ${this.props.user.email}. Here are your albums!`
       : "Hi! Please log in.";
 
     return (

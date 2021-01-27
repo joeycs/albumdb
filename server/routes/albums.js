@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const config = require("../config.js");
 
 let Album = require("../models/album.model");
 
@@ -10,13 +9,13 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/add").post((req, res) => {
-    const username = req.body.username;
+    const email = req.body.email;
     const title = req.body.title;
     const artist = req.body.artist;
     const genre = req.body.genre;
 
     const newAlbum = new Album({
-        username,
+        email,
         title,
         artist,
         genre
@@ -42,7 +41,7 @@ router.route("/:id").delete((req, res) => {
 router.route("/update/:id").post((req, res) => {
     Album.findById(req.params.id)
         .then(album => {
-            album.username = req.body.username;
+            album.email = req.body.email;
             album.title = req.body.title;
             album.artist = req.body.artist;
             album.genre = req.body.genre;

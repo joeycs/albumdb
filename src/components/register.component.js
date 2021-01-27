@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 export default class Register extends Component {
   constructor(props) {
@@ -8,13 +7,13 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    this.state = { username: "" };
+    // this.state = { username: "" };
   }
 
   onChangeUsername(e) {
-    this.setState({
-      username: e.target.value,
-    });
+    // this.setState({
+    //   username: e.target.value,
+    // });
   }
 
   onSubmit(e) {
@@ -30,9 +29,9 @@ export default class Register extends Component {
     //       (document.getElementById("debug").innerHTML = "username taken 🙅")
     //   );
 
-    this.setState({
-      username: "",
-    });
+    // this.setState({
+    //   username: "",
+    // });
   }
 
   render() {
@@ -44,7 +43,6 @@ export default class Register extends Component {
           <input
             required
             className="form-control"
-            value={this.state.title}
             onChange={this.onChangeUsername}
           />
           <p id="debug"></p>
