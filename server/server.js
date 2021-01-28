@@ -46,12 +46,14 @@ const albumsRouter = require("./routes/albums");
 const userRouter = require("./routes/user");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
+const registerRouter = require("./routes/register");
 const oauthCallbackRouter = require("./routes/oauth-callback");
 
 app.use("/albums", albumsRouter);
 app.use("/user", userRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
+app.use("/register", registerRouter);
 app.use("/oauth-callback", oauthCallbackRouter);
 
 app.listen(port, () => {

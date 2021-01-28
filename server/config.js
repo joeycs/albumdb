@@ -3,10 +3,10 @@ module.exports = {
   clientID: 'b2cdeb0c-6535-4613-8c0d-d29694314436',
   clientSecret: 'yVNaCRAbAGV5v1NBAE-jxJ1ioO8y9Pj_IZ0AUa0qOFg',
   redirectURI: 'http://localhost:5000/oauth-callback',
-  applicationID: '85a03867-dccf-4882-adde-1a79aeec50df',
+  applicationID: 'b2cdeb0c-6535-4613-8c0d-d29694314436',
 
   // our FusionAuth api key
-  apiKey: 'o9WngMh2AAp3zH7gvMYtML9sGG31A9xVY1bi3Oui-_Y',
+  apiKey: 'jQ884AxK503ijCY9pjWNIVYbzYkR29ChmpIoY3tcwEboCL3EOiW4g29e',
 
   // ports
   clientPort: 3000,

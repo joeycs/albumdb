@@ -23,9 +23,11 @@ export default class Index extends Component {
     })
       .then((res) => res.json())
       .then((res) => {
-        this.setState({
-          user: res.token,
-        });
+        let user = {
+          email: res.token.email,
+          username: res.token.preferred_username || res.registration.username,
+        };
+        this.setState({ user: user });
       })
       .catch((err) => console.log(err));
   }
@@ -66,9 +68,7 @@ export default class Index extends Component {
         <Route
           exact
           path="/register"
-          render={(props) => (
-            <Register {...props} uri={this.state.uri} user={this.state.user} />
-          )}
+          render={(props) => <Register {...props} uri={this.state.uri} />}
         />
       </Router>
     );

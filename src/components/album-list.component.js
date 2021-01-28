@@ -62,7 +62,7 @@ export default class AlbumList extends Component {
 
   render() {
     let message = this.props.user
-      ? `Hello, ${this.props.user.email}. Here are your albums!`
+      ? `Hello, ${this.props.user.username}. Here are your albums!`
       : "Hi! Please log in.";
 
     return (

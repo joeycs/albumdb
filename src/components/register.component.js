@@ -4,34 +4,40 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
 
+    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    // this.state = { username: "" };
+    this.state = {
+      email: undefined,
+      username: undefined,
+      password: undefined,
+    };
+  }
+
+  onChangeEmail(e) {
+    this.setState({ email: e.target.value });
   }
 
   onChangeUsername(e) {
-    // this.setState({
-    //   username: e.target.value,
-    // });
+    this.setState({ username: e.target.value });
+  }
+
+  onChangePassword(e) {
+    this.setState({ password: e.target.value });
   }
 
   onSubmit(e) {
     e.preventDefault();
 
-    // const user = { username: this.state.username };
+    let userData = {
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.password,
+    };
 
-    // axios
-    //   .post("http://localhost:5000/users/add", user)
-    //   .then((res) => (document.getElementById("debug").innerHTML = res.data))
-    //   .catch(
-    //     (err) =>
-    //       (document.getElementById("debug").innerHTML = "username taken 🙅")
-    //   );
-
-    // this.setState({
-    //   username: "",
-    // });
+    window.location = this.props.uri + `/register?userData=${JSON.stringify(userData)}`;
   }
 
   render() {
@@ -39,13 +45,24 @@ export default class Register extends Component {
       <form onSubmit={this.onSubmit}>
         <h3>Register</h3>
         <div className="form-group">
+          <label>Email</label>
+          <input
+            required
+            className="form-control"
+            onChange={this.onChangeEmail}
+          />
           <label>Username</label>
           <input
             required
             className="form-control"
             onChange={this.onChangeUsername}
           />
-          <p id="debug"></p>
+          <label>Password</label>
+          <input
+            required
+            className="form-control"
+            onChange={this.onChangePassword}
+          />
         </div>
         <button type="submit" className="btn btn-primary">
           Submit
