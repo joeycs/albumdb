@@ -1,52 +1,73 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 export default class Register extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
-        this.state = { username: "" }
-    }
+    this.state = {
+      email: undefined,
+      username: undefined,
+      password: undefined,
+    };
+  }
 
-    onChangeUsername(e) {
-        this.setState({
-            username: e.target.value
-        });
-    }
+  onChangeEmail(e) {
+    this.setState({ email: e.target.value });
+  }
 
-    onSubmit(e) {
-        e.preventDefault();
+  onChangeUsername(e) {
+    this.setState({ username: e.target.value });
+  }
 
-        const user = { username: this.state.username }
-        console.log(user);
+  onChangePassword(e) {
+    this.setState({ password: e.target.value });
+  }
 
-        axios.post("http://localhost:5000/users/add", user)
-            .then(res => document.getElementById("debug").innerHTML = res.data)
-            .catch(err => document.getElementById("debug").innerHTML = "username taken 🙅");
-        
-        this.setState({
-            username: ""
-        });
-    }
+  onSubmit(e) {
+    e.preventDefault();
 
-    render() {
-        return (
-            <form onSubmit={this.onSubmit}>
-                <h3>Register</h3>
-                <div className="form-group">
-                    <label>Username</label>
-                    <input required
-                           className="form-control" 
-                           value={this.state.title}
-                           onChange={this.onChangeUsername}
-                    />
-                    <p id="debug"></p>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-        )
-    }
+    let userData = {
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.password,
+    };
+
+    window.location = this.props.uri + `/register?userData=${JSON.stringify(userData)}`;
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.onSubmit}>
+        <h3>Register</h3>
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            required
+            className="form-control"
+            onChange={this.onChangeEmail}
+          />
+          <label>Username</label>
+          <input
+            required
+            className="form-control"
+            onChange={this.onChangeUsername}
+          />
+          <label>Password</label>
+          <input
+            required
+            className="form-control"
+            onChange={this.onChangePassword}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    );
+  }
 }
