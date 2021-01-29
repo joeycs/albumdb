@@ -23,6 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
-/server.env
+/server/.env
 /src/config.js
 /server/config.js
