@@ -24,5 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 
 */node_modules/*
-*/config.js
 */.env
+/src/config.js
+/server/config.js
