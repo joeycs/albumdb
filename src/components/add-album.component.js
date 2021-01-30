@@ -45,24 +45,21 @@ export default class AddAlbum extends Component {
       genre: this.state.genre,
     };
 
-    console.log(album);
-
     axios
       .post(this.props.uri + `/albums/add`, album)
-      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 
     window.location = "/";
   }
 
   guestBody() {
-    return <h3>Please log in to add an album!</h3>;
+    return <h3>Please log in to add an album! 💿</h3>;
   }
 
   userBody() {
     return (
       <form onSubmit={this.onSubmit}>
-        <h3>Add Album</h3>
+        <h3>Add Album 💿</h3>
         <div className="form-group">
           <label>Title</label>
           <input

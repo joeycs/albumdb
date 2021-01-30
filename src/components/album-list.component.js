@@ -7,6 +7,7 @@ const Album = (props) => (
     <td>{props.album.artist}</td>
     <td>{props.album.genre}</td>
     <td>
+      <a href={`/edit/${props.album._id}`}>edit</a>
       <a
         href="/"
         onClick={() => {
@@ -62,8 +63,8 @@ export default class AlbumList extends Component {
 
   render() {
     let message = this.props.user
-      ? `Hello, ${this.props.user.username}. Here are your albums!`
-      : "Hi! Please log in.";
+      ? `Hello, ${this.props.user.username}. Here are your albums! 🎵`
+      : "Hi! Please log in. 🎵";
 
     return (
       <div>

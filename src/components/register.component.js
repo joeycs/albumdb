@@ -37,13 +37,17 @@ export default class Register extends Component {
       password: this.state.password,
     };
 
-    window.location = this.props.uri + `/register?userData=${JSON.stringify(userData)}`;
+    window.location =
+      this.props.uri + `/register?userData=${JSON.stringify(userData)}`;
   }
 
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <h3>Register</h3>
+        <h3>Register 📝</h3>
+        <p>
+          <i>After registering, you will be redirected to the login page.</i> 😄
+        </p>
         <div className="form-group">
           <label>Email</label>
           <input
