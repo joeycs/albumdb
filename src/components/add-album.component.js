@@ -52,11 +52,7 @@ export default class AddAlbum extends Component {
     window.location = "/";
   }
 
-  guestBody() {
-    return <h3>Please log in to add an album! 💿</h3>;
-  }
-
-  userBody() {
+  render() {
     return (
       <form onSubmit={this.onSubmit}>
         <h3>Add Album 💿</h3>
@@ -92,10 +88,5 @@ export default class AddAlbum extends Component {
         </button>
       </form>
     );
-  }
-
-  render() {
-    if (this.props.user) return this.userBody();
-    else return this.guestBody();
   }
 }

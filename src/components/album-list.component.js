@@ -8,8 +8,18 @@ const Album = (props) => (
     <td>{props.album.genre}</td>
     <td>
       <a href={`/edit/${props.album._id}`}>edit</a>
+      &nbsp;
       <a
-        href="/"
+        //href="/"
+        onClick={() => {
+          props.markAlbum(props.album._id);
+        }}
+      >
+        check/uncheck
+      </a>
+      &nbsp;
+      <a
+        //href="/"
         onClick={() => {
           props.deleteAlbum(props.album._id);
         }}
@@ -23,48 +33,98 @@ const Album = (props) => (
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
+    this.markAlbum = this.markAlbum.bind(this);
     this.deleteAlbum = this.deleteAlbum.bind(this);
-    this.state = { albums: [] };
+    this.getAlbums = this.getAlbums.bind(this);
+    this.state = {
+      albumsToListen: [],
+      albumsListened: [],
+    };
+  }
+
+  getAlbums() {
+    axios
+      .get(this.props.uri + "/albums/")
+      .then((res) => {
+        let albums = res.data.filter(
+          (album) => album.email === this.props.user.email
+        );
+
+        this.setState({
+          albumsToListen: albums.filter((album) => !album.listened),
+          albumsListened: albums.filter((album) => album.listened),
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  markAlbum(id) {
+    let newAlbum = undefined;
+
+    axios
+      .get(this.props.uri + `/albums/${id}`)
+      .then(
+        (res) =>
+          (newAlbum = {
+            email: this.props.user.email,
+            listened: !res.data.listened,
+            title: res.data.title,
+            artist: res.data.artist,
+            genre: res.data.genre,
+          })
+      )
+      .then(() => {
+        axios
+          .post(this.props.uri + `/albums/update/${id}`, newAlbum)
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
   }
 
   deleteAlbum(id) {
     axios
       .delete(this.props.uri + `/albums/${id}`)
-      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 
     this.setState({
-      albums: this.state.albums.filter((album) => album._id !== id),
+      albumsToListen: this.state.albumsToListen.filter((album) => album._id !== id),
+      albumsListened: this.state.albumsListened.filter((album) => album._id !== id),
     });
   }
 
-  albumList() {
-    axios
-      .get(this.props.uri + "/albums/")
-      .then((res) => {
-        this.setState({
-          albums: res.data.filter(
-            (album) => album.email === this.props.user.email
-          ),
-        });
-      })
-      .catch((err) => console.log(err));
-
-    return this.state.albums.map((currAlbum) => {
+  toListenList() {
+    return this.state.albumsToListen.map((album) => {
       return (
         <Album
-          album={currAlbum}
+          album={album}
+          markAlbum={this.markAlbum}
           deleteAlbum={this.deleteAlbum}
-          key={currAlbum._id}
+          key={album._id}
+        />
+      );
+    });
+  }
+
+  listenedList() {
+    return this.state.albumsListened.map((album) => {
+      return (
+        <Album
+          album={album}
+          markAlbum={this.markAlbum}
+          deleteAlbum={this.deleteAlbum}
+          key={album._id}
         />
       );
     });
   }
 
   render() {
-    let message = this.props.user
-      ? `Hello, ${this.props.user.username}. Here are your albums! 🎵`
-      : "Hi! Please log in. 🎵";
+    let message = "Hi! Please log in. 🎵";
+
+    if (this.props.user) {
+      message = `Hello, ${this.props.user.username}. Here are your albums! 🎵`;
+      this.getAlbums();
+    }
 
     return (
       <div>
@@ -78,7 +138,17 @@ export default class AlbumList extends Component {
               <th>Genre</th>
             </tr>
           </thead>
-          <tbody>{this.albumList()}</tbody>
+          <tbody>{this.toListenList()}</tbody>
+        </table>
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th>Title</th>
+              <th>Artist</th>
+              <th>Genre</th>
+            </tr>
+          </thead>
+          <tbody>{this.listenedList()}</tbody>
         </table>
       </div>
     );

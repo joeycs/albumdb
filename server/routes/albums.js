@@ -10,12 +10,14 @@ router.route("/").get((req, res) => {
 
 router.route("/add").post((req, res) => {
     const email = req.body.email;
+    const listened = false;
     const title = req.body.title;
     const artist = req.body.artist;
     const genre = req.body.genre;
 
     const newAlbum = new Album({
         email,
+        listened,
         title,
         artist,
         genre
@@ -42,6 +44,7 @@ router.route("/update/:id").post((req, res) => {
     Album.findById(req.params.id)
         .then(album => {
             album.email = req.body.email;
+            album.listened = req.body.listened;
             album.title = req.body.title;
             album.artist = req.body.artist;
             album.genre = req.body.genre;

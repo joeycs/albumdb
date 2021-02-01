@@ -35,7 +35,7 @@ export default class Index extends Component {
   render() {
     return (
       <Router>
-        <Navbar />
+        <Navbar user={this.state.user} />
         <br />
         <Route
           exact
