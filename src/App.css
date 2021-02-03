@@ -21,7 +21,6 @@
 }
 
 .logo {
-  font-size: x-large;
   font-family: "RobotoSlab";
 }
 
@@ -44,9 +43,36 @@
   background-color: #242424;
 }
 
-.nav-item:hover, .btn-album:hover {
+.nav-item:hover, .btn-album:hover, .btn-code:hover {
   transition: .2s;
   cursor: pointer;
+}
+
+.album-info {
+  width: 100%;
+}
+
+.table-container {
+  padding: 1em;
+  margin-top: 1em;
+}
+
+.table-container, form {
+  width: 30%;
+  transition: .2s;
+}
+
+.table-container:hover, input:hover {
+  border: .1em solid #f2f2f2 !important;
+  transition: .2s !important;
+}
+
+.table-container, input, textarea{
+  background-color:#242424 !important;
+  color: #f2f2f2 !important;
+  border: .1em solid #9c9c9c !important;
+  border-radius: .25em !important;
+  margin-bottom: 1em !important;
 }
 
 .markedAlbum {
@@ -55,17 +81,31 @@
 }
 
 .unmarkedAlbum {
-  color: #f2f2f2;
   text-decoration: none;
 }
 
-.btn-album {
-  color: #6cf0c3;
+.unmarkedAlbum, .btn-album:hover, .btn-code:hover {
+  color: #f2f2f2;
+}
+
+.btn-album, .logo {
   font-size: x-large;
 }
 
-.btn-album:hover {
-  color: #f2f2f2;
+.btn-album, .btn-code {
+  background: none;
+  border: none;
+  color: #6cf0c3;
+  padding: 0;
+  margin-right: .5em;
+}
+
+.btn-code {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transition: .2s;
+  font-size: xx-large;
 }
 
 .btn-primary {

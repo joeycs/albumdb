@@ -45,7 +45,7 @@ export default class Register extends Component {
     return (
       <div className="component-body">
         <form onSubmit={this.onSubmit}>
-          <h3>Register</h3>
+          <h4>Register</h4>
           <p>
             <i>After registering, you will be redirected to the login page.</i>
           </p>

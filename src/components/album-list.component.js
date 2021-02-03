@@ -5,42 +5,47 @@ import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import { faCheckSquare } from "@fortawesome/free-regular-svg-icons";
 import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
 
 const editIcon = <FontAwesomeIcon icon={faEdit} />;
 const markIcon = <FontAwesomeIcon icon={faSquare} />;
 const markedIcon = <FontAwesomeIcon icon={faCheckSquare} />;
 const deleteIcon = <FontAwesomeIcon icon={faMinusSquare} />;
+const musicIcon = <FontAwesomeIcon icon={faMusic} />;
 
 const Album = (props) => (
-  <tr className={props.album.listened ? "markedAlbum" : "unMarkedAlbum"}>
-    <td>{props.album.title}</td>
-    <td>{props.album.artist}</td>
-    <td>{props.album.genre}</td>
+  <tr className={props.album.listened ? "markedAlbum" : "unmarkedAlbum"}>
     <td>
-      <span
-        className="btn-album"
-        onClick={() => {
-          props.editAlbum(props.album._id);
-        }}
-      >
-        {editIcon}
-      </span>
-      <span
+      <button
         className="btn-album"
         onClick={() => {
           props.markAlbum(props.album._id);
         }}
       >
         {props.album.listened ? markedIcon : markIcon}
-      </span>
-      <span
+      </button>
+    </td>
+    <td className="album-info align-text-top">
+      {props.album.title}&nbsp;by&nbsp;
+      {props.album.artist}
+    </td>
+    <td className="align-text-top">
+      <button
+        className="btn-album btn-edit"
+        onClick={() => {
+          props.editAlbum(props.album._id);
+        }}
+      >
+        {editIcon}
+      </button>
+      <button
         className="btn-album"
         onClick={() => {
           props.deleteAlbum(props.album._id);
         }}
       >
         {deleteIcon}
-      </span>
+      </button>
     </td>
   </tr>
 );
@@ -147,7 +152,7 @@ export default class AlbumList extends Component {
   guestBody() {
     return (
       <div className="component-body">
-        <h4>Hi, please log in.</h4>
+        <h4>Hi, please log in or register to begin {musicIcon}</h4>
       </div>
     );
   }
@@ -155,27 +160,19 @@ export default class AlbumList extends Component {
   userBody() {
     return (
       <div className="component-body">
-        <h4>Welcome, {this.props.user.username}.</h4>
-        <table className="table">
-          <thead className="thead-dark">
-            <tr>
-              <th>Title</th>
-              <th>Artist</th>
-              <th>Genre</th>
-            </tr>
-          </thead>
-          <tbody>{this.toListenList()}</tbody>
-        </table>
-        <table className="table">
-          <thead className="thead-dark">
-            <tr>
-              <th>Title</th>
-              <th>Artist</th>
-              <th>Genre</th>
-            </tr>
-          </thead>
-          <tbody>{this.listenedList()}</tbody>
-        </table>
+        <h4>Welcome, {this.props.user.username}</h4>
+        <div className="table-container">
+          <i className="caption">To Listen</i>
+          <table className="table table-borderless">
+            <tbody>{this.toListenList()}</tbody>
+          </table>
+        </div>
+        <div className="table-container">
+          <i className="caption">Listened</i>
+          <table className="table table-borderless">
+            <tbody>{this.listenedList()}</tbody>
+          </table>
+        </div>
       </div>
     );
   }
