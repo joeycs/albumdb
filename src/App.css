@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'RobotoSlab';
+  src: local('RobotoSlab'), url(./fonts/RobotoSlab-VariableFont_wght.ttf) format('truetype');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.bg-dark {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.component-body, .nav-item:hover, tr {
+  color: #f2f2f2;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.component-body {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.navbar-expand-lg {
+  background-color: #6cf0c3;
+}
+
+.logo {
+  font-size: x-large;
+  font-family: "RobotoSlab";
+}
+
+.nav-item, .logo {
+  color: #242424;
+}
+
+.nav-item {
+  font-weight: 500;
+}
+
+.nav-item, .btn-album {
+  font-size: large;
+  margin-left: .2em;
+  margin-right: .2em;
+  transition: .2s;
+}
+
+.nav-item:hover {
+  background-color: #242424;
+}
+
+.nav-item:hover, .btn-album:hover {
+  transition: .2s;
+  cursor: pointer;
+}
+
+.markedAlbum {
+  color: #9c9c9c;
+  text-decoration: line-through;
+}
+
+.unmarkedAlbum {
+  color: #f2f2f2;
+  text-decoration: none;
+}
+
+.btn-album {
+  color: #6cf0c3;
+  font-size: x-large;
+}
+
+.btn-album:hover {
+  color: #f2f2f2;
+}
+
+.btn-primary {
+  background-color: #6cf0c3 !important;
+  color: #242424 !important;
+  font-size: large !important;
+  font-weight: 500 !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  background-color: #242424 !important;
+  color: #f2f2f2 !important;
 }

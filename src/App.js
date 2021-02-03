@@ -1,12 +1,12 @@
 import React from "react";
 import Index from "./components/index.component";
-
-// import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 
 function App() {
   return (
-    <Index></Index>
+    <div className="bg-dark">
+      <Index></Index>
+    </div>
   );
 }
 

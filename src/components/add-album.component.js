@@ -54,39 +54,41 @@ export default class AddAlbum extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <h3>Add Album 💿</h3>
-        <div className="form-group">
-          <label>Title</label>
-          <input
-            required
-            className="form-control"
-            value={this.state.title}
-            onChange={this.onChangeTitle}
-          />
-        </div>
-        <div className="form-group">
-          <label>Artist</label>
-          <input
-            required
-            className="form-control"
-            value={this.state.artist}
-            onChange={this.onChangeArtist}
-          />
-        </div>
-        <div className="form-group">
-          <label>Genre</label>
-          <input
-            required
-            className="form-control"
-            value={this.state.genre}
-            onChange={this.onChangeGenre}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      <div className="component-body">
+        <form onSubmit={this.onSubmit}>
+          <h3>Add Album</h3>
+          <div className="form-group">
+            <label>Title</label>
+            <input
+              required
+              className="form-control"
+              value={this.state.title}
+              onChange={this.onChangeTitle}
+            />
+          </div>
+          <div className="form-group">
+            <label>Artist</label>
+            <input
+              required
+              className="form-control"
+              value={this.state.artist}
+              onChange={this.onChangeArtist}
+            />
+          </div>
+          <div className="form-group">
+            <label>Genre</label>
+            <input
+              required
+              className="form-control"
+              value={this.state.genre}
+              onChange={this.onChangeGenre}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
     );
   }
 }

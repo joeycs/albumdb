@@ -1,31 +1,46 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-regular-svg-icons";
+import { faSquare } from "@fortawesome/free-regular-svg-icons";
+import { faCheckSquare } from "@fortawesome/free-regular-svg-icons";
+import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
+
+const editIcon = <FontAwesomeIcon icon={faEdit} />;
+const markIcon = <FontAwesomeIcon icon={faSquare} />;
+const markedIcon = <FontAwesomeIcon icon={faCheckSquare} />;
+const deleteIcon = <FontAwesomeIcon icon={faMinusSquare} />;
 
 const Album = (props) => (
-  <tr>
+  <tr className={props.album.listened ? "markedAlbum" : "unMarkedAlbum"}>
     <td>{props.album.title}</td>
     <td>{props.album.artist}</td>
     <td>{props.album.genre}</td>
     <td>
-      <a href={`/edit/${props.album._id}`}>edit</a>
-      &nbsp;
-      <a
-        //href="/"
+      <span
+        className="btn-album"
+        onClick={() => {
+          props.editAlbum(props.album._id);
+        }}
+      >
+        {editIcon}
+      </span>
+      <span
+        className="btn-album"
         onClick={() => {
           props.markAlbum(props.album._id);
         }}
       >
-        check/uncheck
-      </a>
-      &nbsp;
-      <a
-        //href="/"
+        {props.album.listened ? markedIcon : markIcon}
+      </span>
+      <span
+        className="btn-album"
         onClick={() => {
           props.deleteAlbum(props.album._id);
         }}
       >
-        delete
-      </a>
+        {deleteIcon}
+      </span>
     </td>
   </tr>
 );
@@ -33,6 +48,7 @@ const Album = (props) => (
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
+    this.editAlbum = this.editAlbum.bind(this);
     this.markAlbum = this.markAlbum.bind(this);
     this.deleteAlbum = this.deleteAlbum.bind(this);
     this.getAlbums = this.getAlbums.bind(this);
@@ -56,6 +72,10 @@ export default class AlbumList extends Component {
         });
       })
       .catch((err) => console.log(err));
+  }
+
+  editAlbum(id) {
+    window.location = `/edit/${id}`;
   }
 
   markAlbum(id) {
@@ -87,8 +107,12 @@ export default class AlbumList extends Component {
       .catch((err) => console.log(err));
 
     this.setState({
-      albumsToListen: this.state.albumsToListen.filter((album) => album._id !== id),
-      albumsListened: this.state.albumsListened.filter((album) => album._id !== id),
+      albumsToListen: this.state.albumsToListen.filter(
+        (album) => album._id !== id
+      ),
+      albumsListened: this.state.albumsListened.filter(
+        (album) => album._id !== id
+      ),
     });
   }
 
@@ -97,6 +121,7 @@ export default class AlbumList extends Component {
       return (
         <Album
           album={album}
+          editAlbum={this.editAlbum}
           markAlbum={this.markAlbum}
           deleteAlbum={this.deleteAlbum}
           key={album._id}
@@ -110,6 +135,7 @@ export default class AlbumList extends Component {
       return (
         <Album
           album={album}
+          editAlbum={this.editAlbum}
           markAlbum={this.markAlbum}
           deleteAlbum={this.deleteAlbum}
           key={album._id}
@@ -118,18 +144,18 @@ export default class AlbumList extends Component {
     });
   }
 
-  render() {
-    let message = "Hi! Please log in. 🎵";
-
-    if (this.props.user) {
-      message = `Hello, ${this.props.user.username}. Here are your albums! 🎵`;
-      this.getAlbums();
-    }
-
+  guestBody() {
     return (
-      <div>
-        <span></span>
-        <h3>{message}</h3>
+      <div className="component-body">
+        <h4>Hi, please log in.</h4>
+      </div>
+    );
+  }
+
+  userBody() {
+    return (
+      <div className="component-body">
+        <h4>Welcome, {this.props.user.username}.</h4>
         <table className="table">
           <thead className="thead-dark">
             <tr>
@@ -152,5 +178,14 @@ export default class AlbumList extends Component {
         </table>
       </div>
     );
+  }
+
+  render() {
+    if (this.props.user) {
+      this.getAlbums();
+      return this.userBody();
+    }
+
+    return this.guestBody();
   }
 }

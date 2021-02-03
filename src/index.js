@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import "bootstrap/dist/css/bootstrap.min.css";
+import './fonts/RobotoSlab-VariableFont_wght.ttf';
 // import './index.css';
 // import reportWebVitals from './reportWebVitals';
 
