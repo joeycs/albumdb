@@ -37,37 +37,43 @@ export default class Register extends Component {
       password: this.state.password,
     };
 
-    window.location = this.props.uri + `/register?userData=${JSON.stringify(userData)}`;
+    window.location =
+      this.props.uri + `/register?userData=${JSON.stringify(userData)}`;
   }
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <h3>Register</h3>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            required
-            className="form-control"
-            onChange={this.onChangeEmail}
-          />
-          <label>Username</label>
-          <input
-            required
-            className="form-control"
-            onChange={this.onChangeUsername}
-          />
-          <label>Password</label>
-          <input
-            required
-            className="form-control"
-            onChange={this.onChangePassword}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+      <div className="component-body">
+        <form onSubmit={this.onSubmit}>
+          <h4>Register</h4>
+          <p>
+            <i>After registering, you will be redirected to the login page.</i>
+          </p>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              required
+              className="form-control"
+              onChange={this.onChangeEmail}
+            />
+            <label>Username</label>
+            <input
+              required
+              className="form-control"
+              onChange={this.onChangeUsername}
+            />
+            <label>Password</label>
+            <input
+              required
+              className="form-control"
+              onChange={this.onChangePassword}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
     );
   }
 }

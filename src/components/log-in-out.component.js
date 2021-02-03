@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 
 export default class LogInOut extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let message = this.props.user ? "sign out" : "sign in";
+    let message = this.props.user ? "Proceed to Logout" : "Proceed to Login";
     let path = this.props.user ? "/logout" : "/login";
 
-    return <a href={this.props.uri + path}>{message}</a>;
+    window.location = this.props.uri + path;
+
+    return <div className="component-body"></div>;
   }
 }
