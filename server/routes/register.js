@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const request = require("request");
-const config = require("../config.js");
 const url = require("url");
+require("dotenv").config();
 
 router.route("/").get((req, res) => {
   let userData = JSON.parse(url.parse(req.url, true).query.userData);
@@ -9,14 +9,14 @@ router.route("/").get((req, res) => {
   request(
     {
       method: "POST",
-      uri: `http://localhost:${config.fusionAuthPort}/api/user/registration/`,
+      uri: `http://localhost:${process.env.FUSION_AUTH_PORT}/api/user/registration/`,
       json: true,
       headers: {
-        Authorization: config.apiKey,
+        Authorization: process.env.API_KEY,
       },
       body: {
         registration: {
-          applicationId: config.applicationID,
+          applicationId: process.env.APPLICATION_ID,
         },
         user: {
           email: userData.email,
@@ -30,7 +30,7 @@ router.route("/").get((req, res) => {
     },
 
     (error, response, body) => {
-      res.redirect(`http://localhost:${config.serverPort}/login`);
+      res.redirect(`http://localhost:${process.env.SERVER_PORT}/login`);
     }
   );
 });

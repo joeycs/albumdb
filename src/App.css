@@ -1,13 +1,38 @@
 @font-face {
-  font-family: 'RobotoSlab';
-  src: local('RobotoSlab'), url(./fonts/RobotoSlab-VariableFont_wght.ttf) format('truetype');
+  font-family: "RobotoSlab";
+  src: local("RobotoSlab"),
+    url(./fonts/RobotoSlab-VariableFont_wght.ttf) format("truetype");
 }
 
-.bg-dark {
-  min-height: 100vh;
+form {
+  width: 384px;
 }
 
-.component-body, .nav-item:hover, tr {
+.footer {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 900px;
+}
+
+.table {
+  table-layout: fixed !important;
+  width: 99.75% !important;
+}
+
+.td-edit {
+  padding-top: 10.75px !important;
+}
+
+.album-info {
+  vertical-align: middle !important;
+  overflow: hidden !important;
+  width: 80% !important;
+}
+
+.component-body,
+.nav-item:hover,
+tr {
   color: #f2f2f2;
 }
 
@@ -24,7 +49,8 @@
   font-family: "RobotoSlab";
 }
 
-.nav-item, .logo {
+.nav-item,
+.logo {
   color: #242424;
 }
 
@@ -32,46 +58,47 @@
   font-weight: 500;
 }
 
-.nav-item, .btn-album {
+.nav-item,
+.btn-album {
   font-size: large;
-  margin-left: .2em;
-  margin-right: .2em;
-  transition: .2s;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  transition: 0.2s;
 }
 
 .nav-item:hover {
   background-color: #242424;
 }
 
-.nav-item:hover, .btn-album:hover, .btn-code:hover {
-  transition: .2s;
+.nav-item:hover,
+.btn-album:hover,
+.btn-add:hover,
+.btn-code:hover {
+  transition: 0.2s;
   cursor: pointer;
-}
-
-.album-info {
-  width: 100%;
 }
 
 .table-container {
   padding: 1em;
   margin-top: 1em;
+  min-height: 162px;
+  width: 960px;
+  transition: 0.2s;
 }
 
-.table-container, form {
-  width: 30%;
-  transition: .2s;
+.table-container:hover,
+input:hover {
+  border: 0.1em solid #f2f2f2 !important;
+  transition: 0.2s !important;
 }
 
-.table-container:hover, input:hover {
-  border: .1em solid #f2f2f2 !important;
-  transition: .2s !important;
-}
-
-.table-container, input, textarea{
-  background-color:#242424 !important;
+.table-container,
+input,
+textarea {
+  background-color: #242424 !important;
   color: #f2f2f2 !important;
-  border: .1em solid #9c9c9c !important;
-  border-radius: .25em !important;
+  border: 0.1em solid #9c9c9c !important;
+  border-radius: 0.25em !important;
   margin-bottom: 1em !important;
 }
 
@@ -84,27 +111,39 @@
   text-decoration: none;
 }
 
-.unmarkedAlbum, .btn-album:hover, .btn-code:hover {
+.unmarkedAlbum,
+.btn-album:hover,
+.btn-add:hover,
+.btn-code:hover {
   color: #f2f2f2;
 }
 
-.btn-album, .logo {
-  font-size: x-large;
-}
-
-.btn-album, .btn-code {
+.btn-album,
+.btn-add,
+.btn-code {
   background: none;
   border: none;
   color: #6cf0c3;
+  transition: 0.2s;
+}
+
+.btn-album,
+.btn-add,
+.logo {
+  font-size: x-large;
+}
+
+.btn-add {
   padding: 0;
-  margin-right: .5em;
+  margin: 0;
+  float: right;
+}
+
+.btn-album {
+  margin-right: 0.5em;
 }
 
 .btn-code {
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  transition: .2s;
   font-size: xx-large;
 }
 

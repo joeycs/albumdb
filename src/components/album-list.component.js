@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusSquare } from "@fortawesome/free-regular-svg-icons";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
 import { faCheckSquare } from "@fortawesome/free-regular-svg-icons";
 import { faMinusSquare } from "@fortawesome/free-regular-svg-icons";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
 
+const addIcon = <FontAwesomeIcon icon={faPlusSquare} />;
 const editIcon = <FontAwesomeIcon icon={faEdit} />;
 const markIcon = <FontAwesomeIcon icon={faSquare} />;
 const markedIcon = <FontAwesomeIcon icon={faCheckSquare} />;
@@ -25,19 +27,21 @@ const Album = (props) => (
         {props.album.listened ? markedIcon : markIcon}
       </button>
     </td>
-    <td className="album-info align-text-top">
+    <td className="album-info">
       {props.album.title}&nbsp;by&nbsp;
       {props.album.artist}
     </td>
-    <td className="align-text-top">
+    <td className="td-edit">
       <button
-        className="btn-album btn-edit"
+        className="btn-album"
         onClick={() => {
           props.editAlbum(props.album._id);
         }}
       >
         {editIcon}
       </button>
+    </td>
+    <td>
       <button
         className="btn-album"
         onClick={() => {
@@ -53,6 +57,7 @@ const Album = (props) => (
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
+    this.addAlbum = this.addAlbum.bind(this);
     this.editAlbum = this.editAlbum.bind(this);
     this.markAlbum = this.markAlbum.bind(this);
     this.deleteAlbum = this.deleteAlbum.bind(this);
@@ -77,6 +82,10 @@ export default class AlbumList extends Component {
         });
       })
       .catch((err) => console.log(err));
+  }
+
+  addAlbum() {
+    window.location = "/add";
   }
 
   editAlbum(id) {
@@ -162,14 +171,33 @@ export default class AlbumList extends Component {
       <div className="component-body">
         <h4>Welcome, {this.props.user.username}</h4>
         <div className="table-container">
-          <i className="caption">To Listen</i>
+          <button className="btn-add" onClick={() => this.addAlbum()}>
+            {addIcon}
+          </button>
+          <i className="caption album-info">To Listen</i>
           <table className="table table-borderless">
+            <thead>
+              <tr>
+                <th></th>
+                <th className="album-info"></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
             <tbody>{this.toListenList()}</tbody>
           </table>
         </div>
         <div className="table-container">
-          <i className="caption">Listened</i>
+          <i className="caption album-info">Listened</i>
           <table className="table table-borderless">
+            <thead>
+              <tr>
+                <th></th>
+                <th className="album-info"></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
             <tbody>{this.listenedList()}</tbody>
           </table>
         </div>

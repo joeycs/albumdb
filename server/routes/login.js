@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const config = require("../config.js");
+require("dotenv").config();
 
 router.route("/").get((req, res) => {
   res.redirect(
-    `http://localhost:${config.fusionAuthPort}/oauth2/authorize?client_id=${config.clientID}&redirect_uri=${config.redirectURI}&response_type=code`
+    `http://localhost:${process.env.FUSION_AUTH_PORT}/oauth2/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&response_type=code`
   );
 });
 
