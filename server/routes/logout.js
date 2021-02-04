@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const config = require("../config.js");
+require("dotenv").config();
 
 router.route("/").get((req, res) => {
   req.session.destroy();
   res.redirect(
-    `http://localhost:${config.fusionAuthPort}/oauth2/logout?client_id=${config.clientID}`
+    `http://localhost:${process.env.FUSION_AUTH_PORT}/oauth2/logout?client_id=${process.env.CLIENT_ID}`
   );
 });
 

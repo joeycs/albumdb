@@ -1,24 +1,24 @@
 const router = require("express").Router();
 const request = require("request");
-const config = require("../config.js");
+require("dotenv").config();
 
 router.route("/").get((req, res) => {
   request(
     {
       method: "POST",
-      uri: `http://localhost:${config.fusionAuthPort}/oauth2/token`,
+      uri: `http://localhost:${process.env.FUSION_AUTH_PORT}/oauth2/token`,
       form: {
-        client_id: config.clientID,
-        client_secret: config.clientSecret,
+        client_id: process.env.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
         code: req.query.code,
         grant_type: "authorization_code",
-        redirect_uri: config.redirectURI,
+        redirect_uri: process.env.REDIRECT_URI,
       },
     },
 
     (error, response, body) => {
       req.session.token = JSON.parse(body).access_token;
-      res.redirect(`http://localhost:${config.clientPort}`);
+      res.redirect(`http://localhost:${process.env.CLIENT_PORT}`);
     }
   );
 });

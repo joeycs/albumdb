@@ -6,13 +6,12 @@ import EditAlbum from "./edit-album.component";
 import AddAlbum from "./add-album.component";
 import Register from "./register.component";
 import LogInOut from "./log-in-out.component";
-import config from "../config.js";
 
 export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uri: `http://localhost:${config.serverPort}`,
+      uri: `http://localhost:${process.env.REACT_APP_SERVER_PORT}`,
       user: undefined,
     };
   }

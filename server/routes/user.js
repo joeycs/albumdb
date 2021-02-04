@@ -1,15 +1,15 @@
 const router = require("express").Router();
 const request = require("request");
-const config = require("../config.js");
+require("dotenv").config();
 
 router.route("/").get((req, res) => {
   if (req.session.token) {
     request(
       {
         method: "POST",
-        uri: `http://localhost:${config.fusionAuthPort}/oauth2/introspect`,
+        uri: `http://localhost:${process.env.FUSION_AUTH_PORT}/oauth2/introspect`,
         form: {
-          client_id: config.clientID,
+          client_id: process.env.CLIENT_ID,
           token: req.session.token,
         },
       },
@@ -21,10 +21,10 @@ router.route("/").get((req, res) => {
           request(
             {
               method: "GET",
-              uri: `http://localhost:${config.fusionAuthPort}/api/user/registration/${introspectResponse.sub}/${config.applicationID}`,
+              uri: `http://localhost:${process.env.FUSION_AUTH_PORT}/api/user/registration/${introspectResponse.sub}/${process.env.APPLICATION_ID}`,
               json: true,
               headers: {
-                Authorization: config.apiKey,
+                Authorization: process.env.API_KEY,
               },
             },
 
