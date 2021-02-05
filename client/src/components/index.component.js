@@ -11,7 +11,7 @@ export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uri: `http://localhost:${process.env.REACT_APP_SERVER_PORT}`,
+      uri: `https://album-db-server.herokuapp.com`,
       user: undefined,
     };
   }

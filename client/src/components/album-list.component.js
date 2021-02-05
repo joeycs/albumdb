@@ -161,7 +161,7 @@ export default class AlbumList extends Component {
   guestBody() {
     return (
       <div className="component-body">
-        <h4 className="googoo">Hi, please log in or register to begin {musicIcon}</h4>
+        <h4>Hi, please log in or register to begin {musicIcon}</h4>
       </div>
     );
   }
