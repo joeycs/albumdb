@@ -1,0 +1,162 @@
+@font-face {
+  font-family: "RobotoSlab";
+  src: local("RobotoSlab"),
+    url(./fonts/RobotoSlab-VariableFont_wght.ttf) format("truetype");
+}
+
+form {
+  width: 384px;
+}
+
+.footer {
+  z-index: -1;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 95vh;
+}
+
+.table {
+  table-layout: fixed !important;
+  width: 99.75% !important;
+}
+
+.td-edit {
+  padding-top: 10.75px !important;
+}
+
+.album-info {
+  vertical-align: middle !important;
+  overflow: hidden !important;
+  width: 80% !important;
+}
+
+.component-body,
+.nav-item:hover,
+tr {
+  color: #f2f2f2;
+}
+
+.component-body {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.navbar-expand-lg {
+  background-color: #6cf0c3;
+}
+
+.logo {
+  font-family: "RobotoSlab";
+}
+
+.nav-item,
+.logo {
+  color: #242424;
+}
+
+.nav-item {
+  font-weight: 500;
+}
+
+.nav-item,
+.btn-album {
+  font-size: large;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+  transition: 0.2s;
+}
+
+.nav-item:hover {
+  background-color: #242424;
+}
+
+.nav-item:hover,
+.btn-album:hover,
+.btn-add:hover,
+.btn-code:hover {
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.table-container {
+  padding: 1em;
+  margin-top: 1em;
+  min-height: 162px;
+  width: 960px;
+  transition: 0.2s;
+}
+
+.table-container:hover,
+input:hover {
+  border: 0.1em solid #f2f2f2 !important;
+  transition: 0.2s !important;
+}
+
+.table-container,
+input,
+textarea {
+  background-color: #242424 !important;
+  color: #f2f2f2 !important;
+  border: 0.1em solid #9c9c9c !important;
+  border-radius: 0.25em !important;
+  margin-bottom: 1em !important;
+}
+
+.markedAlbum {
+  color: #9c9c9c;
+  text-decoration: line-through;
+}
+
+.unmarkedAlbum {
+  text-decoration: none;
+}
+
+.unmarkedAlbum,
+.btn-album:hover,
+.btn-add:hover,
+.btn-code:hover {
+  color: #f2f2f2;
+}
+
+.btn-album,
+.btn-add,
+.btn-code {
+  background: none;
+  border: none;
+  color: #6cf0c3;
+  transition: 0.2s;
+}
+
+.btn-album,
+.btn-add,
+.logo {
+  font-size: x-large;
+}
+
+.btn-add {
+  padding: 0;
+  margin: 0;
+  float: right;
+}
+
+.btn-album {
+  margin-right: 0.5em;
+}
+
+.btn-code {
+  font-size: xx-large;
+}
+
+.btn-primary {
+  background-color: #6cf0c3 !important;
+  color: #242424 !important;
+  font-size: large !important;
+  font-weight: 500 !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  background-color: #242424 !important;
+  color: #f2f2f2 !important;
+}
