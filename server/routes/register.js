@@ -30,7 +30,7 @@ router.route("/").get((req, res) => {
     },
 
     (error, response, body) => {
-      res.redirect(`http://localhost:${process.env.SERVER_PORT}/login`);
+      res.redirect("https://album-db.herokuapp.com/login");
     }
   );
 });

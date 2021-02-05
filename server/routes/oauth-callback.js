@@ -18,7 +18,7 @@ router.route("/").get((req, res) => {
 
     (error, response, body) => {
       req.session.token = JSON.parse(body).access_token;
-      res.redirect(`http://localhost:${process.env.CLIENT_PORT}`);
+      res.redirect("https://album-db.herokuapp.com");
     }
   );
 });
