@@ -9,10 +9,11 @@ form {
 }
 
 .footer {
+  z-index: -1;
   position: absolute;
   text-align: center;
   width: 100%;
-  top: 900px;
+  top: 95vh;
 }
 
 .table {
