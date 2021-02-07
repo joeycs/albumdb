@@ -26,10 +26,7 @@ export default class Index extends Component {
           email: res.token.email,
           username: res.token.preferred_username || res.registration.username,
         };
-
-        if (user.email && user.username) {
-          this.setState({ user: user });
-        }
+        this.setState({ user: user });
       })
       .catch((err) => console.log(err));
   }
