@@ -9,7 +9,7 @@ router.route("/").get((req, res) => {
   request(
     {
       method: "POST",
-      uri: `http://localhost:${process.env.FUSION_AUTH_PORT}/api/user/registration/`,
+      uri: `https://album-db-auth.herokuapp.com/api/user/registration/`,
       json: true,
       headers: {
         Authorization: process.env.API_KEY,

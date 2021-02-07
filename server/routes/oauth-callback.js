@@ -6,7 +6,7 @@ router.route("/").get((req, res) => {
   request(
     {
       method: "POST",
-      uri: `http://localhost:${process.env.FUSION_AUTH_PORT}/oauth2/token`,
+      uri: `https://album-db-auth.herokuapp.com/oauth2/token`,
       form: {
         client_id: process.env.CLIENT_ID,
         client_secret: process.env.CLIENT_SECRET,
