@@ -13,22 +13,31 @@ export default class Index extends Component {
     this.state = {
       uri: "https://album-db-server.herokuapp.com",
       user: undefined,
+      attemptingLogin: false,
     };
   }
 
+  attemptLogin() {
+    this.setState({ attemptingLogin: true });
+  }
+
   componentDidMount() {
-    fetch(this.state.uri + `/user/`, {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        let user = {
-          email: res.token.email,
-          username: res.token.preferred_username || res.registration.username,
-        };
-        this.setState({ user: user });
+    if (this.state.attemptingLogin) {
+      fetch(this.state.uri + `/user/`, {
+        credentials: "include",
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((res) => {
+          let user = {
+            email: res.token.email,
+            username: res.token.preferred_username || res.registration.username,
+          };
+          this.setState({ user: user });
+        })
+        .catch((err) => console.log(err));
+
+      this.setState({ attemptingLogin: false });
+    }
   }
 
   render() {
@@ -61,7 +70,12 @@ export default class Index extends Component {
           exact
           path="/login"
           render={(props) => (
-            <LogInOut {...props} uri={this.state.uri} user={this.state.user} />
+            <LogInOut
+              {...props}
+              attemptLogin={this.attemptLogin()}
+              uri={this.state.uri}
+              user={this.state.user}
+            />
           )}
         />
         <Route
