@@ -10,7 +10,6 @@ import LogInOut from "./log-in-out.component";
 export default class Index extends Component {
   constructor(props) {
     super(props);
-    this.attemptLogin = this.attemptLogin.bind(this);
     this.state = {
       uri: "https://album-db-server.herokuapp.com",
       user: undefined,
@@ -73,7 +72,7 @@ export default class Index extends Component {
           render={(props) => (
             <LogInOut
               {...props}
-              attemptLogin={this.attemptLogin()}
+              attemptLogin={this.attemptLogin.bind(this)}
               uri={this.state.uri}
               user={this.state.user}
             />
