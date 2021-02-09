@@ -11,7 +11,7 @@ export default class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uri: `http://localhost:${process.env.REACT_APP_SERVER_PORT}`,
+      uri: "https://album-db-server.herokuapp.com",
       user: undefined,
     };
   }
@@ -26,7 +26,10 @@ export default class Index extends Component {
           email: res.token.email,
           username: res.token.preferred_username || res.registration.username,
         };
-        this.setState({ user: user });
+
+        if (user.email && user.username) {
+          this.setState({ user: user });
+        }
       })
       .catch((err) => console.log(err));
   }

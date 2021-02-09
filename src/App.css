@@ -9,10 +9,11 @@ input {
 }
 
 .footer {
+  z-index: -1;
   position: absolute;
   text-align: center;
   width: 100%;
-  top: 900px;
+  top: 90vh;
 }
 
 .table {
