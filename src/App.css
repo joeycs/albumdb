@@ -4,8 +4,8 @@
     url(./fonts/RobotoSlab-VariableFont_wght.ttf) format("truetype");
 }
 
-form {
-  width: 384px;
+input {
+  width: 300px !important;
 }
 
 .footer {

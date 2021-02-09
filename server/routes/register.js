@@ -5,6 +5,7 @@ require("dotenv").config();
 
 router.route("/").get((req, res) => {
   let userData = JSON.parse(url.parse(req.url, true).query.userData);
+  console.log(userData);
 
   request(
     {

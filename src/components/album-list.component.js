@@ -68,6 +68,13 @@ export default class AlbumList extends Component {
     };
   }
 
+  shouldComponentUpdate(nextState) {
+    return (
+      this.state.albumsToListen !== nextState.albumsToListen ||
+      this.state.albumsListened !== nextState.albumsListened
+    );
+  }
+
   getAlbums() {
     axios
       .get(this.props.uri + "/albums/")
@@ -167,6 +174,8 @@ export default class AlbumList extends Component {
   }
 
   userBody() {
+    this.getAlbums();
+
     return (
       <div className="component-body">
         <h4>Welcome, {this.props.user.username}</h4>
@@ -206,11 +215,7 @@ export default class AlbumList extends Component {
   }
 
   render() {
-    if (this.props.user) {
-      this.getAlbums();
-      return this.userBody();
-    }
-
+    if (this.props.user) return this.userBody();
     return this.guestBody();
   }
 }

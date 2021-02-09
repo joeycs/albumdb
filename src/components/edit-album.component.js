@@ -73,7 +73,7 @@ export default class EditAlbum extends Component {
     return (
       <div className="component-body">
         <form onSubmit={this.onSubmit}>
-          <h3>Edit album</h3>
+          <h4>Edit album</h4>
           <div className="form-group">
             <label>Title</label>
             <input
