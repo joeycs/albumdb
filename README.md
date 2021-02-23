@@ -9,9 +9,9 @@ AlbumDB is an album "to-listen" list built with the MERN stack and FusionAuth.
 1. Clone the repository to your local machine and install dependencies using [npm](https://www.npmjs.com/) by running the following commands:
 
 ```shell
-$ git clone https://github.com/joeycs/albumdb.git
-$ cd albumdb
-$ npm i
+git clone https://github.com/joeycs/albumdb.git
+cd albumdb
+npm i
 ```
 
 2. In the project's root directory, create a file called `.env` with the following contents:
@@ -36,41 +36,43 @@ SERVER_PORT=5000
 
 ### FusionAuth Setup
 
-1. Create a [FusionAuth](https://fusionauth.io/) account
+1. Install [Docker Desktop](https://docker.com/products/docker-desktop) and ensure it is running
 
-2. Install FusionAuth by running the following commands:
+2. Create a [FusionAuth](https://fusionauth.io/) account
+
+3. Install and deploy FusionAuth by running the following commands in a new terminal:
 
 ```shell
-$ curl -o docker-compose.yml https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/docker-compose.yml
-$ curl -o .env https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/.env
-$ docker-compose up
+curl -o docker-compose.yml https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/docker-compose.yml
+curl -o .env https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/.env
+docker-compose up
 ```
 
-3. Open FusionAuth which will now be running at http://localhost:9011
+4. Open FusionAuth which will now be running at http://localhost:9011
 
-4. Create a new Application
+5. Create a new Application
 
-5. Click "Settings" in the left menu
+6. Click "Settings" in the left menu
 
-6. Click "API Keys"
+7. Click "API Keys"
 
-7. Click the add button in the top-right
+8. Click the add button in the top-right
 
-8. Toggle every column in the Endpoints menu
+9. Toggle every column in the Endpoints menu
 
-9. Click the save button in the top-right
+10. Click the save button in the top-right
 
-10. Navigate to `server/.env` in your project directory and replace the `X`s in the `API_KEY` field with the Id of the API key you just created
+11. Navigate to `server/.env` in your project directory and replace the `X`s in the `API_KEY` field with the Id of the API key you just created
 
-11. Go to "Applications" and click the edit button next to your Application
+12. Go to "Applications" and click the edit button next to your Application
 
-12. Enter `http://localhost:5000/oauth-callback` in the `Authorized Redirect URLs` field and `http://localhost:3000` in the `Logout URL` field
+13. Enter `http://localhost:5000/oauth-callback` in the `Authorized Redirect URLs` field and `http://localhost:3000` in the `Logout URL` field
 
-13. Click the save button in the top-right
+14. Click the save button in the top-right
 
-14. Click the view button next to your Application
+15. Click the view button next to your Application
 
-15. In `server/.env`, replace the `X`s in the `APPLICATION_ID`, `CLIENT_ID`, and `CLIENT_SECRET` fields with your Application's `Id`, `Client Id`, and `Client secret` values respectively
+16. In `server/.env`, replace the `X`s in the `APPLICATION_ID`, `CLIENT_ID`, and `CLIENT_SECRET` fields with your Application's `Id`, `Client Id`, and `Client secret` values respectively
 
 ### MongoDB Setup
 
@@ -92,23 +94,21 @@ $ docker-compose up
 
 ### Local Deployment
 
-1. Open a new terminal
-
-2. Ensure you are in the project's root directory `albumdb/` and deploy the React app by running the following commands:
+1. Ensure you are in the project's root directory `albumdb/` and deploy the React app by running the following commands in a new terminal:
 
 ```shell
-$ npm run build
-$ serve -l 3000 -s build
+npm run build
+serve -l 3000 -s build
 ```
 
-3. To connect to the MongoDB database, run the following commands:
+2. To connect to the MongoDB database, run the following commands in a new terminal:
 
 ```shell
-$ cd server
-$ nodemon server
+cd server
+nodemon server
 ```
 
-4. The project can now be used by visiting http://localhost:3000
+3. The project can now be used by visiting http://localhost:3000
 
 ## Features in Development
 
