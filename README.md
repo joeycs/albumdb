@@ -76,14 +76,14 @@ $ docker-compose up
 
 2. Ensure you are in the project's root directory `albumdb/` and deploy the React app by running the following commands:
 
-```source-shell
+```shell
 $ npm run build
 $ serve -l 3000 -s build
 ```
 
 3. To connect to the MongoDB database, run the following commands:
 
-```source-shell
+```shell
 $ cd server
 $ nodemon server
 ```
