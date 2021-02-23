@@ -6,12 +6,32 @@ AlbumDB is an album "to-listen" list built with the MERN stack and FusionAuth.
 
 ### Installation
 
-Clone the repository to your local machine and install dependencies using [npm](https://www.npmjs.com/) by running the following commands:
+1. Clone the repository to your local machine and install dependencies using [npm](https://www.npmjs.com/) by running the following commands:
 
 ```shell
 $ git clone https://github.com/joeycs/albumdb.git
 $ cd albumdb
 $ npm i
+```
+
+2. In the project's root directory, create a file called `.env` with the following contents:
+
+```
+REACT_APP_SERVER_PORT=5000
+```
+
+3. In the project's `server/` directory, create a file called `.env` with the following contents:
+
+```
+API_KEY=XXXXXXXX
+APPLICATION_ID=XXXXXXXX
+ATLAS_URI=XXXXXXXX
+CLIENT_ID=XXXXXXXX
+CLIENT_PORT=3000
+CLIENT_SECRET=XXXXXXXX
+FUSION_AUTH_PORT=9011
+REDIRECT_URI=http://localhost:5000/oauth-callback
+SERVER_PORT=5000
 ```
 
 ### FusionAuth Setup
