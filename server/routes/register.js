@@ -9,7 +9,7 @@ router.route("/").get((req, res) => {
   request(
     {
       method: "POST",
-      uri: `https://album-db-auth.herokuapp.com/api/user/registration/`,
+      uri: `http://localhost:${process.env.FUSION_AUTH_PORT}/api/user/registration/`,
       json: true,
       headers: {
         Authorization: process.env.API_KEY,
@@ -30,7 +30,7 @@ router.route("/").get((req, res) => {
     },
 
     (error, response, body) => {
-      res.redirect("https://album-db.herokuapp.com/login");
+      res.redirect(`http://localhost:${process.env.CLIENT_PORT}/login`);
     }
   );
 });

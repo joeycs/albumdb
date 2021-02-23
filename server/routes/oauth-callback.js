@@ -6,7 +6,7 @@ router.route("/").get((req, res) => {
   request(
     {
       method: "POST",
-      uri: `https://album-db-auth.herokuapp.com/oauth2/token`,
+      uri: `http://localhost:${process.env.FUSION_AUTH_PORT}/oauth2/token`,
       form: {
         client_id: process.env.CLIENT_ID,
         client_secret: process.env.CLIENT_SECRET,
@@ -18,7 +18,7 @@ router.route("/").get((req, res) => {
 
     (error, response, body) => {
       req.session.token = JSON.parse(body).access_token;
-      res.redirect("https://album-db.herokuapp.com");
+      res.redirect(`http://localhost:${process.env.CLIENT_PORT}`);
     }
   );
 });
