@@ -16,22 +16,22 @@ export default class Index extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch(this.state.uri + `/user/`, {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        let user = {
-          email: res.token.email,
-          username: res.token.preferred_username || res.registration.username,
-        };
+  async componentDidMount() {
+    try {
+      const res = await fetch(this.state.uri + `/user/`, {
+        credentials: "include",
+      });
+      const json = await res.json();
 
-        if (user.email && user.username) {
-          this.setState({ user: user });
-        }
-      })
-      .catch((err) => console.log(err));
+      let user = {
+        email: json.token.email,
+        username: json.token.preferred_username || json.registration.username,
+      };
+
+      if (user.email && user.username) this.setState({ user: user });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   render() {

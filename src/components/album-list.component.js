@@ -68,6 +68,10 @@ export default class AlbumList extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.user && this.props.user) this.getAlbums();
+  }
+
   getAlbums() {
     axios
       .get(this.props.uri + "/albums/")
@@ -75,7 +79,6 @@ export default class AlbumList extends Component {
         let albums = res.data.filter(
           (album) => album.email === this.props.user.email
         );
-
         this.setState({
           albumsToListen: albums.filter((album) => !album.listened),
           albumsListened: albums.filter((album) => album.listened),
@@ -110,6 +113,7 @@ export default class AlbumList extends Component {
       .then(() => {
         axios
           .post(this.props.uri + `/albums/update/${id}`, newAlbum)
+          .then(this.getAlbums())
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
@@ -206,11 +210,7 @@ export default class AlbumList extends Component {
   }
 
   render() {
-    if (this.props.user) {
-      this.getAlbums();
-      return this.userBody();
-    }
-
+    if (this.props.user) return this.userBody();
     return this.guestBody();
   }
 }
