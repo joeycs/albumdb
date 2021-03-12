@@ -57,11 +57,13 @@ const Album = (props) => (
 export default class AlbumList extends Component {
   constructor(props) {
     super(props);
+
     this.addAlbum = this.addAlbum.bind(this);
     this.editAlbum = this.editAlbum.bind(this);
     this.markAlbum = this.markAlbum.bind(this);
     this.deleteAlbum = this.deleteAlbum.bind(this);
     this.getAlbums = this.getAlbums.bind(this);
+
     this.state = {
       albumsToListen: [],
       albumsListened: [],
@@ -165,7 +167,7 @@ export default class AlbumList extends Component {
   guestBody() {
     return (
       <div className="component-body">
-        <h4>Hi, please log in or register to begin {musicIcon}</h4>
+        <i>Hi, please log in or register to begin {musicIcon}</i>
       </div>
     );
   }
@@ -210,7 +212,6 @@ export default class AlbumList extends Component {
   }
 
   render() {
-    if (this.props.user) return this.userBody();
-    return this.guestBody();
+    return this.props.user ? this.userBody() : this.guestBody();
   }
 }

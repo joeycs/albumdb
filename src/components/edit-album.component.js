@@ -69,7 +69,7 @@ export default class EditAlbum extends Component {
     window.location = "/";
   }
 
-  render() {
+  editAlbumForm() {
     return (
       <div className="component-body">
         <form onSubmit={this.onSubmit}>
@@ -107,5 +107,17 @@ export default class EditAlbum extends Component {
         </form>
       </div>
     );
+  }
+
+  loadingPage() {
+    return (
+      <div className="component-body">
+        <i>Loading user data</i>
+      </div>
+    );
+  }
+
+  render() {
+    return this.props.user ? this.editAlbumForm() : this.loadingPage();
   }
 }
