@@ -115,7 +115,9 @@ export default class AlbumList extends Component {
       .then(() => {
         axios
           .post(this.props.uri + `/albums/update/${id}`, newAlbum)
-          .then(this.getAlbums())
+          .then(() => {
+            this.getAlbums();
+          })
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
@@ -165,11 +167,7 @@ export default class AlbumList extends Component {
   }
 
   guestBody() {
-    return (
-      <div className="component-body">
-        <i>Hi, please log in or register to begin {musicIcon}</i>
-      </div>
-    );
+    return <div className="component-body">{musicIcon}</div>;
   }
 
   userBody() {

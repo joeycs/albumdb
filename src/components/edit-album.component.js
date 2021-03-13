@@ -109,7 +109,7 @@ export default class EditAlbum extends Component {
     );
   }
 
-  loadingPage() {
+  loadingBody() {
     return (
       <div className="component-body">
         <i>Loading user data</i>
@@ -118,6 +118,6 @@ export default class EditAlbum extends Component {
   }
 
   render() {
-    return this.props.user ? this.editAlbumForm() : this.loadingPage();
+    return this.props.user ? this.editAlbumForm() : this.loadingBody();
   }
 }
